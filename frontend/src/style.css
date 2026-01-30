@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply transition-colors duration-200;
+  }
+  
+  body {
+    @apply bg-slate-100 min-h-screen;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .card-modern {
+    @apply bg-white rounded-2xl shadow-lg border border-gray-200 p-6 transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none;
+  }
+  
+  .btn-secondary {
+    @apply bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none;
+  }
+  
+  .input-modern {
+    @apply w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-all duration-200;
+  }
+  
+  .badge-modern {
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modalIn {
+  animation: modalIn 0.2s ease-out;
+}
+
+/* Vue transition: slide-down */
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-down-enter-from {
+  opacity: 0;
+  transform: translate(-50%, -20px);
+}
+
+.slide-down-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -20px);
+}
+
+/* Custom scrollbar for better UX */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Map region styles - stroke-width controlled via JS for zoom */
+.map-svg-container path[data-region-id] {
+  transition: filter 0.15s ease;
+  cursor: pointer;
+  stroke: #3d5a26;
+  vector-effect: non-scaling-stroke;
+}
+.map-svg-container path[data-region-id]:hover {
+  filter: brightness(1.12) drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+}
+
+/* 3D Map */
+.map-3d-container {
+  transform-style: preserve-3d;
+}
+.map-3d-container .map-svg-container svg {
+  display: block;
+}
+
+/* Selected region glow */
+.map-svg-container path[data-region-id].selected {
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.7));
+}
+
+/* Turn summary bar animation */
+@keyframes barGrow {
+  from {
+    width: var(--bar-from, 0%);
+  }
+  to {
+    width: var(--bar-to, 0%);
+  }
+}
+
+.turn-summary-bar {
+  animation: barGrow 1.5s ease-out forwards;
+  width: var(--bar-from, 0%);
+}
